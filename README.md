@@ -1,4 +1,14 @@
-# react-dev-utils
+# react-dev-utils-webpack-4
+
+## IMPORTANT!
+
+This is temporary build for react-dev-utils supporting webpack 4. This was forked from [Andreas Cederström](https://github.com/andriijas/create-react-app/tree/webpack4/packages/react-dev-utils), and can be used while waiting for the webpack 4 [pull request #4077](https://github.com/facebook/create-react-app/pull/4077) to be merged into create react app.
+
+You can include it your package.json file as follows:
+
+```
+"react-dev-utils": "nicolaspearson/react-dev-utils-webpack-4"
+```
 
 This package includes some utilities used by [Create React App](https://github.com/facebook/create-react-app).<br>
 Please refer to its documentation:
@@ -41,7 +51,7 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('public/index.html'),
+      template: path.resolve('public/index.html')
     }),
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -49,13 +59,12 @@ module.exports = {
       PUBLIC_URL: publicUrl
       // You can pass any key-value pairs, this was just an example.
       // WHATEVER: 42 will replace %WHATEVER% with 42 in index.html.
-    }),
+    })
     // ...
-  ],
+  ]
   // ...
-}
+};
 ```
-
 
 #### `new ModuleScopePlugin(appSrc: string | string[], allowedFiles?: string[])`
 
@@ -65,19 +74,18 @@ This Webpack plugin ensures that relative imports from app's source directories 
 var path = require('path');
 var ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
-
 module.exports = {
   // ...
   resolve: {
     // ...
     plugins: [
-      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
       // ...
-    ],
+    ]
     // ...
-  },
+  }
   // ...
-}
+};
 ```
 
 #### `new WatchMissingNodeModulesPlugin(nodeModulesPath: string)`
@@ -100,9 +108,9 @@ module.exports = {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebook/create-react-app/issues/186
     new WatchMissingNodeModulesPlugin(path.resolve('node_modules'))
-  ],
+  ]
   // ...
-}
+};
 ```
 
 #### `checkRequiredFiles(files: Array<string>): boolean`
@@ -115,10 +123,12 @@ If a file is not found, prints a warning message and returns `false`.
 var path = require('path');
 var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 
-if (!checkRequiredFiles([
-  path.resolve('public/index.html'),
-  path.resolve('src/index.js')
-])) {
+if (
+  !checkRequiredFiles([
+    path.resolve('public/index.html'),
+    path.resolve('src/index.js')
+  ])
+) {
   process.exit(1);
 }
 ```
@@ -145,22 +155,22 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 // In your webpack config:
 // ...
 module: {
-   rules: [
-     {
-        test: /\.(js|jsx)$/,
-        include: paths.appSrc,
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              // Pass the formatter:
-              formatter: eslintFormatter,
-            },
-          },
-        ],
-      }
-   ]
+  rules: [
+    {
+      test: /\.(js|jsx)$/,
+      include: paths.appSrc,
+      enforce: 'pre',
+      use: [
+        {
+          loader: 'eslint-loader',
+          options: {
+            // Pass the formatter:
+            formatter: eslintFormatter
+          }
+        }
+      ]
+    }
+  ];
 }
 ```
 
@@ -177,7 +187,7 @@ Prints the JS and CSS asset sizes after the build, and includes a size compariso
 ```js
 var {
   measureFileSizesBeforeBuild,
-  printFileSizesAfterBuild,
+  printFileSizesAfterBuild
 } = require('react-dev-utils/FileSizeReporter');
 
 measureFileSizesBeforeBuild(buildFolder).then(previousFileSizes => {
@@ -264,7 +274,6 @@ Attempts to open the browser with a given URL.<br>
 On Mac OS X, attempts to reuse an existing Chrome tab via AppleScript.<br>
 Otherwise, falls back to [opn](https://github.com/sindresorhus/opn) behavior.
 
-
 ```js
 var path = require('path');
 var openBrowser = require('react-dev-utils/openBrowser');
@@ -322,9 +331,9 @@ module.exports = {
     // require.resolve('webpack/hot/dev-server'),
     'react-dev-utils/webpackHotDevClient',
     'src/index'
-  ],
+  ]
   // ...
-}
+};
 ```
 
 #### `getCSSModuleLocalIdent(context: Object, localIdentName: String, localName: String, options: Object): string`
@@ -340,7 +349,7 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 // In your webpack config:
 // ...
 module: {
-   rules: [
+  rules: [
     {
       test: /\.module\.css$/,
       use: [
@@ -350,16 +359,15 @@ module: {
           options: {
             importLoaders: 1,
             modules: true,
-            getLocalIdent: getCSSModuleLocalIdent,
-          },
+            getLocalIdent: getCSSModuleLocalIdent
+          }
         },
         {
           loader: require.resolve('postcss-loader'),
-          options: postCSSLoaderOptions,
-        },
-      ],
+          options: postCSSLoaderOptions
+        }
+      ]
     }
-   ]
+  ];
 }
 ```
-
