@@ -1,5 +1,3 @@
-# react-dev-utils-webpack-4
-
 ## IMPORTANT!
 
 This is temporary build for react-dev-utils supporting webpack 4. This was forked from [Andreas Cederström](https://github.com/andriijas/create-react-app/tree/webpack4/packages/react-dev-utils), and can be used while waiting for the webpack 4 [pull request #4077](https://github.com/facebook/create-react-app/pull/4077) to be merged into create react app.
@@ -9,6 +7,8 @@ You can include it your package.json file as follows:
 ```
 "react-dev-utils": "nicolaspearson/react-dev-utils-webpack-4"
 ```
+
+# react-dev-utils
 
 This package includes some utilities used by [Create React App](https://github.com/facebook/create-react-app).<br>
 Please refer to its documentation:
