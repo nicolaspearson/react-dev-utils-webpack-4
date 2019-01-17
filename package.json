@@ -1,6 +1,6 @@
 {
   "name": "react-dev-utils",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Webpack utilities used by Create React App",
   "repository": "facebook/create-react-app",
   "license": "MIT",
@@ -58,7 +58,7 @@
     "recursive-readdir": "2.2.2",
     "shell-quote": "1.6.1",
     "sockjs-client": "1.1.4",
-    "strip-ansi": "4.0.0",
+    "strip-ansi": "3.0.1",
     "text-table": "0.2.0"
   },
   "devDependencies": {
